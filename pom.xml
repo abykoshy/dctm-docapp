@@ -28,7 +28,7 @@
                         <phase>package</phase>
                         <configuration>
                             <finalName>${project.name}</finalName>
-                            <classifier>interfaces</classifier>
+                            <classifier>intf</classifier>
                             <excludes>
                                 <exclude>**/impl/*</exclude>
                             </excludes>
@@ -69,7 +69,7 @@
                         </goals>
                         <configuration>
                             <outputDirectory>
-                                ${basedir}/target/dar_workspace/demodocapp
+                                ${basedir}/target/dar_workspace/dctm-docapp
                             </outputDirectory>
                             <resources>
                                 <resource>
@@ -96,6 +96,7 @@
                                     <filtering>false</filtering>
                                     <includes>
                                         <include>**/target/**</include>
+                                        <include>**/src/main/resources/**</include>
                                     </includes>
                                     <excludes>
                                         <exclude>**/target/dar_workspace/**

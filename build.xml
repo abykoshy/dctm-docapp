@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
-<project name="demodocapp" default="package-project">
-    <property name="darfilename" value="target/demodocapp.dar"/>
+<project name="dctm-docapp" default="package-project">
+    <property name="darfilename" value="target/dctm-docapp.dar"/>
     <target name="import-project"
             description="Must import a project before updating, building,
             or installing it">
-        <emc.importProject dmproject="demodocapp"/>
+        <emc.importProject dmproject="dctm-docapp"/>
     </target>
 
     <target name="build-project" depends="import-project"
             description="Build the project">
-        <emc.build dmproject="demodocapp" failonerror="true"/>
+        <emc.build dmproject="dctm-docapp" failonerror="true"/>
     </target>
     <target name="package-project" depends="build-project"
             description="Package the project into a DAR for installation">
         <delete file="${darfilename}"/>
         <emc.dar
                 manifest="bin/dar/default.dardef.artifact"
-                dmproject="demodocapp"
+                dmproject="dctm-docapp"
                 dar="${darfilename}"/>
     </target>
 </project>

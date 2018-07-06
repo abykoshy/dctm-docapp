@@ -9,7 +9,7 @@
   <viewModel xsi:type="Artifact:DefaultArtifactViewModel"/>
   <contentStore>
     <contentEntries key="docapp-intf.jar">
-      <value filePath="content/00/-750796200/docapp-intf.jar"/>
+      <value filePath="target/docapp-intf.jar"/>
     </contentEntries>
   </contentStore>
 </Artifact:Artifact>

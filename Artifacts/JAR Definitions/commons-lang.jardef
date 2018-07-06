@@ -9,7 +9,7 @@
   <viewModel xsi:type="Artifact:DefaultArtifactViewModel"/>
   <contentStore>
     <contentEntries key="commons-lang3-3.7.jar">
-      <value filePath="content/58/-1902984558/commons-lang3-3.7.jar"/>
+      <value filePath="target/ext/commons-lang3-3.7.jar"/>
     </contentEntries>
   </contentStore>
 </Artifact:Artifact>
