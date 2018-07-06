@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ak.dctm</groupId>
+    <artifactId>docapp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- define properties to be used in the Artifact.jardef file using
+             resource filtering -->
+        <mysopimpljar>${project.name}-impl.jar</mysopimpljar>
+        <interfacesjar>${project.name}-interfaces.jar</interfacesjar>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <!-- the execution to create an interfaces jar -->
+                    <execution>
+                        <id>interfaces</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <finalName>${project.name}</finalName>
+                            <classifier>interfaces</classifier>
+                            <excludes>
+                                <exclude>**/impl/*</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <!-- The execution configuration to create the jar for the
+                        implementation. this could be multiple
+                        depending on the number of modules in your app -->
+                    <execution>
+                        <id>impl</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <finalName>${project.name}</finalName>
+                            <classifier>impl</classifier>
+                            <includes>
+                                <include>**/impl/*</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- the resources plugin copies the dar related files to a
+                separate workspace folder so that HeadlessComposer can work -->
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- We do this process in the verify phase as we
+                            need to collect the jars created and move
+                            them the dar workspace -->
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${basedir}/target/dar_workspace/demodocapp
+                            </outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}</directory>
+                                    <!-- enabling the filtering replaces the
+                                        parameters inside the .jardef files
+                                        or any other files -->
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/Artifacts/**</include>
+                                        <include>**/bin/**</include>
+                                        <include>**/bin-dar/**</include>
+                                        <include>**/dar/**</include>
+                                        <include>**/Installation Parameter Files/**
+                                        </include>
+                                        <include>.dmproject</include>
+                                        <include>.dfsproject</include>
+                                        <include>.template</include>
+                                        <include>.project</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/target/**</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>**/target/dar_workspace/**
+                                        </exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- we use here, the exec plugin to call the headless composer
+                    with the required parameters
+                    More information on the arguments can be found in the
+                    Composer User Guide -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-cp</argument>
+                        <argument>${headlesscomposer}/startup.jar</argument>
+                        <argument>org.eclipse.core.launcher.Main</argument>
+                        <argument>-data</argument>
+                        <argument>target/dar_workspace</argument>
+                        <argument>-application</argument>
+                        <argument>org.eclipse.ant.core.antRunner</argument>
+                        <argument>-buildfile</argument>
+                        <argument>build.xml</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>target/demodocapp.dar</file>
+                                    <type>dar</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/ext</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>documentum</groupId>
+            <artifactId>dfc</artifactId>
+            <version>7.3</version>
+            <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../../apps/dfc/dfc.jar</systemPath>
+        </dependency>
+
+    </dependencies>
+</project>

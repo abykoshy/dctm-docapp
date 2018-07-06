@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Artifact:Artifact xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Artifact="http://documentum.emc.com/infrastructure/12012007/artifact" xmlns:dardef="http://documentum.emc.com/infrastructure/12012007/dardef" xmlns:dclass="http://documentum.emc.com/artifact/12012007/dclass" xmlns:installparameter="installparameter" xmlns:jardef="http://documentum.emc.com/artifact/12012007/jardef" xmlns:moduledef="http://documentum.emc.com/artifact/12012007/moduledef" xmlns:sysobject="http://documentum.emc.com/artifact/12012007/sysobject" urn="urn:com.emc.ide.artifact.dardef/default?artifactURI=file:/C:/Users/akoshy/IdeaProjects/docapp/dar/default.dardef" categoryId="com.emc.ide.artifact.dardef">
+  <dataModel xsi:type="dardef:DarDef" objectName="dctm-docapp" contentType="jar" sourceDir="bin" name="dctm-docapp">
+    <objectType href="urn:com.emc.ide.artifact.dclass/dmc_dar?artifactURI=platform:/resource/DFS2/inst/dclass/dmc_dar.type#//@dataModel"/>
+    <version/>
+    <artifacts xsi:type="sysobject:SysobjectSubtype" href="urn:com.emc.ide.artifact.sysobjectsubtype/resourcefile?artifactURI=file:/C:/Users/akoshy/IdeaProjects/dctm-docapp/Artifacts/SysObjects/resourcefile.sysobject#//@dataModel"/>
+    <artifacts xsi:type="jardef:JarDef" href="urn:com.emc.ide.artifact.jardef.jardef/customfoldertbojardef?artifactURI=file:/C:/Users/akoshy/IdeaProjects/dctm-docapp/Artifacts/JAR%20Definitions/customfoldertbojardef.jardef#//@dataModel"/>
+    <artifacts xsi:type="jardef:JarDef" href="urn:com.emc.ide.artifact.jardef.jardef/customfoldertboimpl?artifactURI=file:/C:/Users/akoshy/IdeaProjects/dctm-docapp/Artifacts/JAR%20Definitions/customfoldertboimpl.jardef#//@dataModel"/>
+    <artifacts xsi:type="jardef:JarDef" href="urn:com.emc.ide.artifact.jardef.jardef/commons-lang?artifactURI=file:/C:/Users/akoshy/IdeaProjects/dctm-docapp/Artifacts/JAR%20Definitions/commons-lang.jardef#//@dataModel"/>
+    <artifacts xsi:type="jardef:JarDef" href="urn:com.emc.ide.artifact.jardef.jardef/commons-io?artifactURI=file:/C:/Users/akoshy/IdeaProjects/dctm-docapp/Artifacts/JAR%20Definitions/commons-io.jardef#//@dataModel"/>
+    <artifacts xsi:type="jardef:JavaLibrary" href="urn:com.emc.ide.artifact.jardef.javalibrary/commonlibrary?artifactURI=file:/C:/Users/akoshy/IdeaProjects/dctm-docapp/Artifacts/Java%20Libraries/commonlibrary.javalibrary#//@dataModel"/>
+    <artifacts xsi:type="dclass:DClass" href="urn:com.emc.ide.artifact.dclass/customfolder?artifactURI=file:/C:/Users/akoshy/IdeaProjects/docapp/Artifacts/Types/customfolder.type#//@dataModel"/>
+    <artifacts xsi:type="moduledef:ModuleDef" href="urn:com.emc.ide.artifact.moduledef/customfoldertbo?artifactURI=file:/C:/Users/akoshy/IdeaProjects/docapp/Artifacts/Modules/customfoldertbo.module#//@dataModel"/>
+    <artifacts xsi:type="installparameter:FolderParameter" href="urn:com.emc.ide.folderparameter/Dar+Install+Folder?artifactURI=file:/C:/Users/akoshy/IdeaProjects/docapp/Artifacts/Installation%20Parameters/darinstallfolder.parameter#//@dataModel"/>
+    <artifacts xsi:type="dclass:DClass" href="urn:com.emc.ide.artifact.dclass/dmc_dar?artifactURI=platform:/resource/DFS2/inst/dclass/dmc_dar.type#//@dataModel"/>
+    <artifacts xsi:type="dardef:DarDef" href="urn:com.emc.ide.artifact.dardef/default?artifactURI=file:/C:/Users/akoshy/IdeaProjects/docapp/dar/default.dardef#//@dataModel"/>
+    <darInstallOptionsSet>
+      <location xsi:type="installparameter:FolderParameter" href="urn:com.emc.ide.folderparameter/Dar+Install+Folder?artifactURI=file:/C:/Users/akoshy/IdeaProjects/docapp/Artifacts/Installation%20Parameters/darinstallfolder.parameter#//@dataModel"/>
+      <upgradeOption xsi:type="dardef:UpgradeOption"/>
+    </darInstallOptionsSet>
+  </dataModel>
+</Artifact:Artifact>
