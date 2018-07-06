@@ -1,4 +1,4 @@
-# dctm-docapp
+# Building Documentum Archive .dar using Maven
 Continuous Deployment of Documentum Docapp archive is still a challenge due to Composer's dependency on packaging of Jars in the Documentum Archive(DAR).
 
 In order to make this possible, we could integrate the creation of DAR into Maven projects and the DAR can then be deployed using a custom plugin on DeployIt or other tools.
